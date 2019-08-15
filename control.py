@@ -8,6 +8,6 @@ from iwlistparse import scan_wifi
 
 dict = air_sensor()
 dict['stations'] = scan_wifi()
-dict['datetime'] = datetime.datetime.now()
+dict['datetime'] = unicode(datetime.datetime.now())
 
-send_message(json.dump(dict))
+send_message(json.dumps(dict))
