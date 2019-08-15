@@ -14,9 +14,9 @@ def get_routers_positions():
 def on_message(client, userdata, message):
 	if message.payload == "1":
 		rgb_led(255, 0, 0)
-	else if message.payload == "-1":
+	elif message.payload == "-1":
 		rgb_led(0, 0, 255)
-	else message.payload:
+	else:
 		rgb_led(0, 255, 0)
 
 delay = 5
