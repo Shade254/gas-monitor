@@ -8,8 +8,6 @@ import time
 def on_connect(client, userdata, flags, rc):
 
     if rc == 0:
-        print("Connected to broker")
-
         global Connected                #Use global variable
         Connected = True                #Signal connection 
     else:
@@ -44,7 +42,5 @@ def send_message(msg):
 
     global Client
     Client.publish("data", msg)
-
-    print("Sent")
     Client.disconnect()
     Client.loop_stop()
