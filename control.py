@@ -7,20 +7,39 @@ from air_module import air_sensor
 from iwlistparse import scan_wifi
 from Trilateration import trilat
 from rgb_module import rgb_led
+import random
+
+def get_random_coords():
+	lat = random.uniform(56.901578, 57.290873)
+	lon = random.uniform(9.576935, 10.302654)
+	return [lat, lon]
+
 
 def get_routers_positions():
-	return {"57.052359N,9.910457E":-44, "57.050374N,9.912322E":-45, "57.051868N,9.912837E":-54}
+	routers = {}
+	for i in range(3):
+		coords = get_random_coords();
+		stri = str(coords[0]) + "N," + str(coords[1]) + "E"
+		strength = -random.randrange(14, 60, 1)
+		routers[stri] = strength
+	return routers
 
 def on_message(client, userdata, message):
 	if message.payload == "1":
 		rgb_led(255, 0, 0)
-	else if message.payload == "-1":
+	elif message.payload == "-1":
 		rgb_led(0, 0, 255)
-	else message.payload:
+	else:
 		rgb_led(0, 255, 0)
 
 delay = 5
 
+print(get_routers_positions())
+print(get_routers_positions())
+print(get_routers_positions())
+print(get_routers_positions())
+print(get_routers_positions())
+print(get_routers_positions())
 
 mqtt_connect.init(on_message)
 print("Starting connection")
